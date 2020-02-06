@@ -16,7 +16,16 @@ class userRepository {
     }
 
     delete(id) {
-        this.model.findByIdAndDelete(id, (e, user) => {
+        this.model.findByIdAndDelete(id, e => {
+            if (e) {
+                console.log(`Error occurred: ${e}`);
+            }
+        });
+    }
+
+    update(id, first, last, age, emailAddress) {
+        const newUser = { first, last, age, emailAddress };
+        this.model.findByIdAndUpdate(id, newUser, e => {
             if (e) {
                 console.log(`Error occurred: ${e}`);
             }
