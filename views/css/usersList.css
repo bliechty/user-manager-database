@@ -1,3 +1,12 @@
 #user-list-table {
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
+}
+
+#display-by-category {
+    display: flex;
+    justify-content: center;
+}
+
+.user-input {
+    margin: 0 5px;
 }

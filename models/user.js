@@ -20,6 +20,7 @@ const userSchema = new Schema({
     }
 });
 
+userSchema.index({first: 1});
 const collectionName = "users";
 const user = mongoose.model("user", userSchema, collectionName);
 module.exports = user;

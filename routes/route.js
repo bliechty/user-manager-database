@@ -78,4 +78,8 @@ app.post("/userList/:userId", (req, res) => {
     }
 });
 
+app.post("/userList", (req, res) => {
+
+});
+
 module.exports = app;
