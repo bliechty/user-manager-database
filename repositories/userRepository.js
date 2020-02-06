@@ -14,6 +14,14 @@ class userRepository {
     findAll() {
         return this.model.find();
     }
+
+    delete(id) {
+        this.model.findByIdAndDelete(id, (e, user) => {
+            if (e) {
+                console.log(`Error occurred: ${e}`);
+            }
+        });
+    }
 }
 
 module.exports = new userRepository(user);

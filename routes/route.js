@@ -32,12 +32,17 @@ app.post("/createUser", (req, res) => {
             req.body["last-name"],
             req.body["age"],
             req.body["email-address"]
-        ).then(user => {
+        ).then(() => {
             res.redirect("/userList");
         }).catch(e => {
             console.log(`Error occurred: ${e}`);
         });
     }
+});
+
+app.get("/deleteUser/:userId", (req, res) => {
+    repository.delete(req.params.userId);
+    res.redirect("/userList");
 });
 
 module.exports = app;
