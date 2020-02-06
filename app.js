@@ -1,11 +1,14 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-
 const routes = require("./routes/route");
 const app = express();
 const PORT = process.env.PORT;
 const DB = process.env.DATABASE_URL;
+const tenUsers = require("./tenUsers");
+const repository = require("./repositories/userRepository");
+const user = repository.model;
+user.insertMany(tenUsers);
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
