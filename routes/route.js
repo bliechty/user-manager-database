@@ -7,8 +7,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/userList", (req, res) => {
-    repository.findAll("first", "ascending").then(users => {
-        res.render("usersList", {users, category: "first", order: "ascending"});
+    repository.findAll("_id", "ascending").then(users => {
+        res.render("usersList", {users, category: "_id", order: "ascending"});
     }).catch(e => {
         console.log(`Error occurred: ${e}`);
     });
@@ -86,10 +86,6 @@ app.post("/userList/:userId", (req, res) => {
         );
         res.redirect("/userList");
     }
-});
-
-app.post("/userList", (req, res) => {
-
 });
 
 module.exports = app;

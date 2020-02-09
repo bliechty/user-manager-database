@@ -2,22 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    first: {
-        type: String
-    },
-    last: {
-        type: String
-    },
-    age: {
-        type: Number
-    },
-    emailAddress: {
-        type: String
-    },
-    createdDate: {
-        type: String,
-        default: new Date().toLocaleString()
-    }
+    first: String,
+    last: String,
+    age: Number,
+    emailAddress: String,
+    createdDate: String
 });
 
 const collectionName = "users";

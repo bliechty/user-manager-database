@@ -6,7 +6,13 @@ class userRepository {
     }
 
     create(first, last, age, emailAddress) {
-        const newUser = { first, last, age, emailAddress };
+        const newUser = {
+            first,
+            last,
+            age,
+            emailAddress,
+            createdDate: new Date().toLocaleString()
+        };
         const user = new this.model(newUser);
         return user.save();
     }
@@ -30,7 +36,12 @@ class userRepository {
     }
 
     update(id, first, last, age, emailAddress) {
-        const newUser = { first, last, age, emailAddress };
+        const newUser = {
+            first,
+            last,
+            age,
+            emailAddress
+        };
         this.model.findByIdAndUpdate(id, newUser, e => {
             if (e) {
                 console.log(`Error occurred: ${e}`);
