@@ -7,8 +7,17 @@ app.get("/", (req, res) => {
 });
 
 app.get("/userList", (req, res) => {
-    repository.findAll("_id", "ascending").then(users => {
-        res.render("usersList", {users, category: "_id", order: "ascending"});
+    let category = "";
+    let order = "";
+    if (Object.keys(req.query).length !== 0) {
+        category = req.query.category;
+        order = req.query.order;
+    } else {
+        category = "_id";
+        order = "ascending";
+    }
+    repository.findAll(category, order).then(users => {
+        res.render("usersList", {users, category, order});
     }).catch(e => {
         console.log(`Error occurred: ${e}`);
     });
@@ -52,7 +61,7 @@ app.post("/createUser", (req, res) => {
 
 app.get("/deleteUser/:userId", (req, res) => {
     repository.delete(req.params.userId);
-    res.redirect("/userList");
+    res.redirect(`/userList?category=${req.query.category}&order=${req.query.order}`);
 });
 
 app.get("/userList/:userId", (req, res) => {
@@ -84,7 +93,7 @@ app.post("/userList/:userId", (req, res) => {
             req.body["age"],
             req.body["email-address"]
         );
-        res.redirect("/userList");
+        res.redirect(`/userList?category=${req.query.category}&order=${req.query.order}`);
     }
 });
 

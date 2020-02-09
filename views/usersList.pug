@@ -57,9 +57,15 @@ html
                             td= obj.emailAddress
                             td= obj.createdDate
                             td
-                                a.anchor(href="/userList/"+obj._id, class="pure-button") Edit User
+                                a.anchor(
+                                    href="/userList/"+obj._id+"?category="+category+"&order="+order,
+                                    class="pure-button"
+                                    ) Edit User
                             td
-                                a.anchor(href="/deleteUser/"+obj._id, class="pure-button") Delete User
+                                a.anchor(
+                                    href="/deleteUser/"+obj._id+"?category="+category+"&order="+order,
+                                    class="pure-button"
+                                    ) Delete User
         else
             div#error-container
                 div#error
