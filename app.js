@@ -6,8 +6,10 @@ const app = express();
 const PORT = process.env.PORT;
 const DB = process.env.DATABASE_URL;
 const tenUsers = require("./tenUsers");
+const fiftyUsers = require("./fiftyUsers");
 const repository = require("./repositories/userRepository");
 // repository.insertMany(tenUsers);
+// repository.insertMany(fiftyUsers);
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
