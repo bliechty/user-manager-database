@@ -11,8 +11,14 @@ class userRepository {
         return user.save();
     }
 
-    findAll() {
-        return this.model.find();
+    findAll(category, order) {
+        const index = {};
+        if (order === "ascending") {
+            index[category] = 1;
+        } else if (order === "descending") {
+            index[category] = -1;
+        }
+        return this.model.find().sort(index);
     }
 
     delete(id) {
@@ -34,16 +40,6 @@ class userRepository {
 
     insertMany(userArray) {
         this.model.insertMany(userArray);
-    }
-
-    display(category, order) {
-        const index = {};
-        if (order === "ascending") {
-            index[category] = 1;
-        } else if (order === "descending") {
-            index[category] = -1;
-        }
-        console.log(index);
     }
 }
 

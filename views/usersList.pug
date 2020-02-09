@@ -2,6 +2,7 @@ html
     head
         include pure.pug
         include fonts.pug
+        script(src="https://code.jquery.com/jquery-3.3.1.js")
         style
             include css/navBar.css
             include css/usersList.css
@@ -12,15 +13,25 @@ html
         include navBar.pug
         h2 User List
         div#display-by-category
-            form(class="pure-form")
+            form(class="pure-form", id="displayUsers", method="POST")
                 span Display users by
-                select(id="user-category" class="user-input")
+                select(
+                    id="user-category"
+                    class="user-input",
+                    onchange="this.form.submit()",
+                    name="user-category"
+                    )
                     option(value="first") first name
                     option(value="last") last name
                     option(value="age") age
                     option(value="emailAddress") email address
                 span in
-                select(id="user-order" class="user-input")
+                select(
+                    id="user-order",
+                    class="user-input",
+                    onchange="this.form.submit()",
+                    name="user-order"
+                    )
                     option ascending
                     option descending
                 span order
@@ -53,3 +64,7 @@ html
                 div#error
                     div#error-message No users saved
                     a.anchor(href="/createUser", id="try-again", class="pure-button") Create User
+
+        script.
+            $("#user-category").val("#{category}");
+            $("#user-order").val("#{order}");

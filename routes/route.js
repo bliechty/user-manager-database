@@ -7,8 +7,18 @@ app.get("/", (req, res) => {
 });
 
 app.get("/userList", (req, res) => {
-    repository.findAll().then(users => {
-        res.render("usersList", {users});
+    repository.findAll("first", "ascending").then(users => {
+        res.render("usersList", {users, category: "first", order: "ascending"});
+    }).catch(e => {
+        console.log(`Error occurred: ${e}`);
+    });
+});
+
+app.post("/userList", (req, res) => {
+    const category = req.body["user-category"];
+    const order = req.body["user-order"];
+    repository.findAll(category, order).then(users => {
+        res.render("usersList", {users, category, order});
     }).catch(e => {
         console.log(`Error occurred: ${e}`);
     });
