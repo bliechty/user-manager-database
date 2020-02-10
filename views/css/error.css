@@ -1,9 +1,9 @@
-#error-container {
+.error-container {
     margin: 0 auto;
     width: 400px;
 }
 
-#error {
+.error {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,10 +12,10 @@
     padding: 5px 20px;
 }
 
-#error-message {
+.error-message {
     color: white;
 }
 
-#try-again {
+.try-again {
     margin: 0 5px;
 }

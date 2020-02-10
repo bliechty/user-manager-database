@@ -50,16 +50,12 @@ class userRepository {
     }
 
     search(searchInput) {
-        if (!/\\/.test(searchInput) &&
-            !/\|/.test(searchInput) &&
-            !/\+/.test(searchInput) &&
-            !/\?/.test(searchInput) &&
-            !/\./.test(searchInput)) {
-            const regex = new RegExp(searchInput, "i");
-            return this.model.find({$or: [{first: {$regex: regex}}, {last: {$regex: regex}}]});
-        } else {
-
-        }
+        const regex = new RegExp(searchInput, "i");
+        return this.model.find({$or: [
+            {first: {$regex: regex}},
+            {last: {$regex: regex}},
+            {age: {$regex: regex}}
+        ]});
     }
 
     insertMany(userArray) {

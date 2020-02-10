@@ -42,16 +42,16 @@ html
                                     href="/deleteUser/"+obj._id+"?category="+category+"&order="+order,
                                     class="pure-button"
                                     ) Delete User
-        else if noResults
+        else if searched
             include search.pug
-            div#error-container
-                div#error
-                    div#error-message No users found
+            div(class="error-container", id="no-users-found")
+                div.error
+                    div.error-message No users found
         else
-            div#error-container
-                div#error
-                    div#error-message No users saved
-                    a.anchor(href="/createUser", id="try-again", class="pure-button") Create User
+            div.error-container
+                div.error
+                    div.error-message No users saved
+                    a(href="/createUser", class="pure-button try-again anchor") Create User
 
         if category && order
             script.

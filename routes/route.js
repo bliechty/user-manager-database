@@ -34,11 +34,19 @@ app.post("/userList", (req, res) => {
             console.log(`Error occurred: ${e}`);
         });
     } else {
-        repository.search(searchInput).then(users => {
-            res.render("usersList", {users, noResults: true});
-        }).catch(e => {
-            console.log(`Error occurred: ${e}`);
-        });
+        if (!/\\/.test(searchInput) &&
+            !/\|/.test(searchInput) &&
+            !/\+/.test(searchInput) &&
+            !/\?/.test(searchInput) &&
+            !/\./.test(searchInput)) {
+            repository.search(searchInput).then(users => {
+                res.render("usersList", {users, searched: true});
+            }).catch(e => {
+                console.log(`Error occurred: ${e}`);
+            });
+        } else {
+            res.render("usersList", {users: [], searched: true});
+        }
     }
 });
 
