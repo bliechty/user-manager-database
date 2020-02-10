@@ -13,44 +13,7 @@ html
         include navBar.pug
         h2 User List
         if users.length !== 0
-            div#display-by-category
-                form(class="pure-form", id="displayUsers", method="POST")
-                    span Display users by
-                    select(
-                        id="user-category"
-                        class="user-input",
-                        onchange="this.form.submit()",
-                        name="user-category"
-                    )
-                        option(value="_id") date created
-                        option(value="first") first name
-                        option(value="last") last name
-                        option(value="age") age
-                        option(value="emailAddress") email address
-                    span in
-                    select(
-                        id="user-order",
-                        class="user-input",
-                        onchange="this.form.submit()",
-                        name="user-order"
-                    )
-                        option ascending
-                        option descending
-                    span order
-
-            div#search
-                form(class="pure-form", method="POST")
-                    input(
-                        type="text",
-                        class="pure-input-rounded",
-                        name="search-input"
-                        )
-                    button(
-                        type="submit"
-                        class="pure-button pure-button-primary user-input"
-                        ) Search
-                    span (First Name and Last Name Only)
-
+            include search.pug
             table(class="pure-table pure-table-bordered", id="user-list-table")
                 thead
                     tr
@@ -79,6 +42,11 @@ html
                                     href="/deleteUser/"+obj._id+"?category="+category+"&order="+order,
                                     class="pure-button"
                                     ) Delete User
+        else if noResults
+            include search.pug
+            div#error-container
+                div#error
+                    div#error-message No users found
         else
             div#error-container
                 div#error

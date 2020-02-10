@@ -35,7 +35,7 @@ app.post("/userList", (req, res) => {
         });
     } else {
         repository.search(searchInput).then(users => {
-            res.render("usersList", {users});
+            res.render("usersList", {users, noResults: true});
         }).catch(e => {
             console.log(`Error occurred: ${e}`);
         });
