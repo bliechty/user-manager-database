@@ -38,6 +38,18 @@ html
                         option descending
                     span order
 
+            div#search
+                form(class="pure-form", method="POST")
+                    input(
+                        type="text",
+                        class="pure-input-rounded",
+                        name="search-input"
+                        )
+                    button(
+                        type="submit"
+                        class="pure-button pure-button-primary user-input"
+                        ) Search
+
             table(class="pure-table pure-table-bordered", id="user-list-table")
                 thead
                     tr

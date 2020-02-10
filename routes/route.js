@@ -24,13 +24,31 @@ app.get("/userList", (req, res) => {
 });
 
 app.post("/userList", (req, res) => {
-    const category = req.body["user-category"];
-    const order = req.body["user-order"];
-    repository.findAll(category, order).then(users => {
-        res.render("usersList", {users, category, order});
-    }).catch(e => {
-        console.log(`Error occurred: ${e}`);
-    });
+    const searchInput = req.body["search-input"];
+    if (searchInput === undefined) {
+        const category = req.body["user-category"];
+        const order = req.body["user-order"];
+        repository.findAll(category, order).then(users => {
+            res.render("usersList", {users, category, order});
+        }).catch(e => {
+            console.log(`Error occurred: ${e}`);
+        });
+    } else {
+        let category = "";
+        let order = "";
+        if (Object.keys(req.query).length !== 0) {
+            category = req.query.category;
+            order = req.query.order;
+        } else {
+            category = "_id";
+            order = "ascending";
+        }
+        repository.search(searchInput).then(users => {
+            res.render("usersList", {users, category, order});
+        }).catch(e => {
+            console.log(`Error occurred: ${e}`);
+        });
+    }
 });
 
 app.get("/createUser", (req, res) => {

@@ -9,6 +9,8 @@ const userSchema = new Schema({
     createdDate: String
 });
 
+userSchema.index({first: 1, last: 1});
+
 const collectionName = "users";
 const user = mongoose.model("user", userSchema, collectionName);
 module.exports = user;

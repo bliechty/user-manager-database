@@ -49,6 +49,18 @@ class userRepository {
         });
     }
 
+    search(searchInput) {
+        if (!/\\/.test(searchInput) &&
+            !/\|/.test(searchInput) &&
+            !/\+/.test(searchInput) &&
+            !/\?/.test(searchInput) &&
+            !/\./.test(searchInput)) {
+            return this.model.find({$or: [{first: {$regex: searchInput}}, {last: {$regex: searchInput}}]});
+        } else {
+
+        }
+    }
+
     insertMany(userArray) {
         this.model.insertMany(userArray);
     }
