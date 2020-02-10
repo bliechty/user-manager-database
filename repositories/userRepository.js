@@ -54,7 +54,6 @@ class userRepository {
         return this.model.find({$or: [
             {first: {$regex: regex}},
             {last: {$regex: regex}},
-            {age: {$regex: regex}}
         ]});
     }
 
