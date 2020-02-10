@@ -49,6 +49,7 @@ html
                         type="submit"
                         class="pure-button pure-button-primary user-input"
                         ) Search
+                    span (First Name and Last Name Only)
 
             table(class="pure-table pure-table-bordered", id="user-list-table")
                 thead
@@ -84,6 +85,7 @@ html
                     div#error-message No users saved
                     a.anchor(href="/createUser", id="try-again", class="pure-button") Create User
 
-        script.
-            $("#user-category").val("#{category}");
-            $("#user-order").val("#{order}");
+        if category && order
+            script.
+                $("#user-category").val("#{category}");
+                $("#user-order").val("#{order}");

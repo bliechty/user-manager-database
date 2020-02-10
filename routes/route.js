@@ -34,17 +34,8 @@ app.post("/userList", (req, res) => {
             console.log(`Error occurred: ${e}`);
         });
     } else {
-        let category = "";
-        let order = "";
-        if (Object.keys(req.query).length !== 0) {
-            category = req.query.category;
-            order = req.query.order;
-        } else {
-            category = "_id";
-            order = "ascending";
-        }
         repository.search(searchInput).then(users => {
-            res.render("usersList", {users, category, order});
+            res.render("usersList", {users});
         }).catch(e => {
             console.log(`Error occurred: ${e}`);
         });

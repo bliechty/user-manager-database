@@ -55,7 +55,8 @@ class userRepository {
             !/\+/.test(searchInput) &&
             !/\?/.test(searchInput) &&
             !/\./.test(searchInput)) {
-            return this.model.find({$or: [{first: {$regex: searchInput}}, {last: {$regex: searchInput}}]});
+            const regex = new RegExp(searchInput, "i");
+            return this.model.find({$or: [{first: {$regex: regex}}, {last: {$regex: regex}}]});
         } else {
 
         }
