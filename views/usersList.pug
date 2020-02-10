@@ -34,12 +34,12 @@ html
                             td= obj.createdDate
                             td
                                 a.anchor(
-                                    href="/userList/"+obj._id+"?category="+category+"&order="+order,
+                                    href="/userList/"+obj._id,
                                     class="pure-button"
                                     ) Edit User
                             td
                                 a.anchor(
-                                    href="/deleteUser/"+obj._id+"?category="+category+"&order="+order,
+                                    href="/deleteUser/"+obj._id,
                                     class="pure-button"
                                     ) Delete User
         else if searched
