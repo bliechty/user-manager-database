@@ -50,11 +50,21 @@ class userRepository {
     }
 
     search(searchInput) {
-        const regex = new RegExp(searchInput, "i");
-        return this.model.find({$or: [
-            {first: {$regex: regex}},
-            {last: {$regex: regex}},
-        ]});
+        let regex;
+        if (/[@.]/.test(searchInput)) {
+            regex = new RegExp(`^${searchInput.replace(".", "\\.")}$`, "i");
+            return this.model.find({emailAddress: regex});
+        } else {
+            regex = new RegExp(`^${searchInput}$`, "i");
+            if (/^\d+$/.test(searchInput)) {
+                return this.model.find({age: searchInput});
+            } else {
+                return this.model.find({$or: [
+                    {first: regex},
+                    {last: regex}
+                ]});
+            }
+        }
     }
 
     insertMany(userArray) {

@@ -41,7 +41,6 @@ app.post("/userList", (req, res) => {
             !/\|/.test(searchInput) &&
             !/\+/.test(searchInput) &&
             !/\?/.test(searchInput) &&
-            !/\./.test(searchInput) &&
             searchInput !== "") {
             repository.search(searchInput).then(users => {
                 res.render("usersList", {users, category, order, searched: true});
