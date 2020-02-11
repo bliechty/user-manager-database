@@ -1,11 +1,13 @@
 const express = require("express");
 const app = express.Router();
 const repository = require("../repositories/userRepository");
-const cookieParser = require("cookie-parser");
-app.use(cookieParser());
 
 app.get("/", (req, res) => {
-    res.render("index");
+    res.render("login");
+});
+
+app.get("/functionality", (req, res) => {
+    res.render("functionality");
 });
 
 app.get("/userList", (req, res) => {
