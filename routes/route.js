@@ -119,9 +119,10 @@ app.post("/userList/:userId", (req, res) => {
     }
 });
 
-function checkForCategoryAndOrder(cookies) {
-    if (cookies.category === undefined &&
-        cookies.order === undefined) {
+const checkForCategoryAndOrder = (cookies) => {
+    if (cookies === undefined ||
+        (cookies.category === undefined &&
+            cookies.order === undefined)) {
         return {
             category: "_id",
             order: "ascending"
@@ -132,6 +133,6 @@ function checkForCategoryAndOrder(cookies) {
             order: cookies.order
         };
     }
-}
+};
 
 module.exports = app;
